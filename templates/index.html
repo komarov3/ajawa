@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pearson's Square Feed Calculator</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; }
+        .container { max-width: 600px; margin: auto; }
+        input, select, button { margin: 10px 0; padding: 5px; width: 100%; box-sizing: border-box; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Pearson's Square Feed Calculator</h1>
+        {% if error %}
+        <p class="error">{{ error }}</p>
+        {% endif %}
+        <form method="POST">
+            <div>
+                <label for="feed1">Feed 1:</label>
+                <select id="feed1" name="feed1" onchange="toggleCustomProtein(this, 'protein1')" required>
+                    {% for feed, protein in feed_elements.items() %}
+                    <option value="{{ feed }}">{{ feed }} ({{ protein }}% protein)</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div id="protein1_custom" style="display: none;">
+                <label for="protein1">Feed 1 Custom Protein Content (%):</label>
+                <input type="number" id="protein1" name="protein1" step="0.1">
+            </div>
+            <div>
+                <label for="feed2">Feed 2:</label>
+                <select id="feed2" name="feed2" onchange="toggleCustomProtein(this, 'protein2')" required>
+                    {% for feed, protein in feed_elements.items() %}
+                    <option value="{{ feed }}">{{ feed }} ({{ protein }}% protein)</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div id="protein2_custom" style="display: none;">
+                <label for="protein2">Feed 2 Custom Protein Content (%):</label>
+                <input type="number" id="protein2" name="protein2" step="0.1">
+            </div>
+            <div>
+                <label for="desired_protein">Desired Protein Content (%):</label>
+                <input type="number" id="desired_protein" name="desired_protein" step="0.1" required>
+            </div>
+            <div>
+                <label for="total_weight">Total Mix Weight (kg):</label>
+                <input type="number" id="total_weight" name="total_weight" step="0.1" required>
+            </div>
+            <button type="submit">Calculate</button>
+        </form>
+    </div>
+    <script>
+        function toggleCustomProtein(select, proteinId) {
+            var customDiv = document.getElementById(proteinId + '_custom');
+            var customInput = document.getElementById(proteinId);
+            if (select.value === 'Other (custom)') {
+                customDiv.style.display = 'block';
+                customInput.required = true;
+            } else {
+                customDiv.style.display = 'none';
+                customInput.required = false;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pearson's Square Feed Calculator - Result</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; }
+        .container { max-width: 600px; margin: auto; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Pearson's Square Feed Calculator - Result</h1>
+        <table>
+            <tr>
+                <th>Feed</th>
+                <th>Protein Content (%)</th>
+                <th>Weight (kg)</th>
+                <th>Proportion (%)</th>
+            </tr>
+            <tr>
+                <td>{{ result.feed1 }}</td>
+                <td>{{ result.protein1 }}</td>
+                <td>{{ result.weight1 }}</td>
+                <td>{{ result.proportion1 }}</td>
+            </tr>
+            <tr>
+                <td>{{ result.feed2 }}</td>
+                <td>{{ result.protein2 }}</td>
+                <td>{{ result.weight2 }}</td>
+                <td>{{ result.proportion2 }}</td>
+            </tr>
+        </table>
+        <p>Total Mix Weight: {{ result.total_weight }} kg</p>
+        <p>Desired Protein Content: {{ result.desired_protein }}%</p>
+        <a href="/">Calculate Again</a>
+    </div>
+</body>
+</html>
